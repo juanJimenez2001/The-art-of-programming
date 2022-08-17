@@ -1,0 +1,22 @@
+package aop.solution;
+import aop.runner.TestObject;
+
+public class BusquedaBinariaTemperatura {
+	public static int findProblematicTemperature (TestObject temperatures) {
+        int aux = findProblematicTemperature(temperatures, 0, temperatures.size()-1);
+        return aux;
+	}
+	
+	public static int findProblematicTemperature(TestObject temperatures, int i, int j){
+        int x=(i+j)/2;
+        if (x==temperatures.size()-1 || temperatures.get(x+1)<=temperatures.get(x)) {
+        	if(x==0 || temperatures.get(x-1)<=temperatures.get(x)) {
+        		return x;
+        	}
+        	else {
+        		return findProblematicTemperature(temperatures, i, x-1);
+        	}       	
+        }       
+        return findProblematicTemperature(temperatures, x+1, j);
+    }
+}

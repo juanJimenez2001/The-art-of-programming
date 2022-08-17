@@ -1,0 +1,81 @@
+package aop.solution;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+//import aop.runner.TestObject;
+
+public class Program {
+
+	/*public static int findLowPoint (TestObject altitudes) {
+		return findLowPoint(altitudes, 0, altitudes.size-1, altitudes.size);
+	}
+
+	public static int findLowPoint(TestObject altitudes, int low, int high, int n) {
+		int mid=low+(high-low)/2;
+		if(mid==0 || mid==n-1)
+			return -1;
+		if ((mid == 0 || altitudes.get(mid-1)>=altitudes.get(mid)) && (mid==n-1 || altitudes.get(mid+1)>=altitudes.get(mid)))
+			return mid;
+
+		else if (mid>0 && altitudes.get(mid-1)>altitudes.get(mid))
+			return findLowPoint(altitudes, low, (mid-1), n);
+
+		else
+			return findLowPoint(altitudes, (mid+1), high, n);
+	}*/
+
+	/*public static int findLowPoint (List<Integer> altitudes) {
+		int aux = findLowPoint(altitudes, 0, altitudes.size()-1);
+		return aux;
+	}*/
+
+	public static int findLowPoint(TestObject altitudes) {
+		int high=altitudes.size()-1;
+		int low=0;
+		int mid;
+		int lowValue;
+		int highValue;
+		while (high>low) {
+			mid=(high+low)/2;
+			 if ((mid==0 || altitudes.get(mid)<=altitudes.get(mid-1)) && (mid==altitudes.size()-1 || altitudes.get(mid)<=altitudes.get(mid+1)))
+		            return mid;
+		     else if (mid>0 && altitudes.get(mid)>altitudes.get(mid-1))
+		    	 high=mid-1;
+		     else
+		    	 low=mid+1;
+		}
+		return -1;
+	}
+
+
+	/*static int findLowPoint(List<Integer> altitudes, int n){
+        return findLowPoint(altitudes, 0, n-1, n);
+    }
+
+
+	static int findLowPoint(List<Integer> altitudes, int low, int high, int n) {
+	        int mid=low+(high-low)/2;
+	        if(mid==0 || mid==n-1)
+				return -1;
+	        if ((mid == 0 || altitudes.get(mid-1)>=altitudes.get(mid)) && (mid==n-1 || altitudes.get(mid+1)>=altitudes.get(mid)))
+	            return mid;
+	        else if (mid>0 && altitudes.get(mid-1)>altitudes.get(mid))
+	            return findLowPoint(altitudes, low, (mid-1), n);
+	        else
+	            return findLowPoint(altitudes, (mid+1), high, n);
+	    }
+
+	public static void main(String [] argcs) {
+		Scanner sc=new Scanner(System.in);
+		List<Integer> lista= new ArrayList<Integer>();
+		int x=sc.nextInt();
+		while(x!=0){
+			lista.add(x);
+			x=sc.nextInt();
+		}
+		System.out.println(findLowPoint(lista, lista.size()));
+		sc.close();
+	}*/
+}

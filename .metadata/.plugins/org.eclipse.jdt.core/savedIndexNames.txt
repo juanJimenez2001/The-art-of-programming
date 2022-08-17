@@ -1,0 +1,9 @@
+INDEX VERSION 1.131+D:\Documentos\Universidad\3ºcarrera\The art of programming\java\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+991346023.index
+1074896792.index
+1178402369.index
+2669729142.index
+2654697412.index
+1658479516.index
+2450070437.index

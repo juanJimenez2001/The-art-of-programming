@@ -1,0 +1,36 @@
+package aop.solution;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class prueba {
+
+    public static void main (String [] args) {
+        Scanner scan= new Scanner(System.in);
+        Map <String,Queue<List<String>>> dates= new HashMap<>();
+        String fecha=scan.next();
+        while (!fecha.equals("000000")) {
+            int n= Integer.parseInt(scan.next());
+            Queue <List<String>> colaPartidos= new LinkedList <>();
+            while (n>0) {
+                List <String> partido= new LinkedList<String>();
+                String palabra;
+                for(int i=0; i<4;i++) {
+                    palabra=scan.next();
+                    partido.add(palabra);
+                }
+                colaPartidos.add(partido);
+                n--;
+            }
+            dates.put(fecha, colaPartidos);
+            fecha= scan.next();
+        }
+        scan.close();
+        System.out.println(dates);
+    }
+
+}

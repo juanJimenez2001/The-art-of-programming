@@ -1,0 +1,57 @@
+package aop.solution;
+import aop.runner.TestObject;
+
+public class Program {
+
+	public static int findLowPoint(TestObject altitudes) {
+		int high=altitudes.size()-1;
+		int low=0;
+		int mid=0;
+		boolean bool=false;
+		while (!bool) {
+			mid=(high+low)/2;
+			if ((mid==0 || altitudes.get(mid)<=altitudes.get(mid-1)) && (mid==altitudes.size()-1 || altitudes.get(mid)<=altitudes.get(mid+1))) {
+				bool=true;
+				break;
+			}
+			else if (mid>0 && altitudes.get(mid)>altitudes.get(mid-1))
+				high=mid-1;
+			else
+				low=mid+1;
+		}
+		return mid;
+	}
+	/*public static int findLowPoint(TestObject altitudes) {
+		int high = altitudes.size() - 1;
+		int low = 0;
+		boolean fin = false;
+		int mid = 0;
+		int midValue;
+		int lowValue;
+		int highValue;
+		while (!fin) {
+			mid = (high + low) / 2;
+			midValue = altitudes.get(mid);
+			if (mid==0) {
+				lowValue = Integer.MAX_VALUE;
+			} else
+				lowValue = altitudes.get(mid - 1);
+			if (mid == altitudes.size() - 1)
+				highValue = Integer.MAX_VALUE;
+			else
+				highValue = altitudes.get(mid + 1);
+
+			
+			if (midValue <= lowValue && midValue <= highValue) {
+				fin = true;
+				break;
+			}
+			else if (highValue <= midValue) 
+				low = mid + 1;
+			else
+				high = mid - 1;
+		}
+		return mid;
+
+	}*/
+}

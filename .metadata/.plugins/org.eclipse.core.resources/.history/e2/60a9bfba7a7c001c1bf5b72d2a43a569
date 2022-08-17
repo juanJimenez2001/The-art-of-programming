@@ -1,0 +1,18 @@
+
+public class Fibonacci {
+	
+	public static int algoritmoRecurs(int n, int[] val) {
+		if(val[n-1]!=0)
+			return val[n];
+		else if(n==1 && n==2)
+			val[n-1]=1;
+		else
+			val[n-1]=algoritmoRecurs(n-1, val)+algoritmoRecurs(n-2, val);
+		return val[n-1];
+	}
+	
+	
+	public static void main(String [] argcs) {
+		Systme.out.println(algoritmoRecurs(5, new int[]))
+	}
+}

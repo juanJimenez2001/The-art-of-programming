@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Dia6 {
+	
+	public static void main(String [] argcs) {
+		Scanner sc=new Scanner(System.in);
+		List<Integer> list=new ArrayList<Integer>();
+		int x=sc.nextInt();
+		list.add(x);
+		x=sc.nextInt();
+		while(x!=0) {
+			list.add(x);
+			x=sc.nextInt();
+			for(int i=0; i<x; i++) {
+				list.add(x);
+				x=sc.nextInt();
+			}
+			System.out.println(list);
+		}
+		
+		sc.close();
+	}
+}

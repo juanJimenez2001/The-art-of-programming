@@ -1,0 +1,105 @@
+import java.util.Arrays;
+import java.util.Iterator;
+
+class LittleBishops {
+    final static int MAX_TOTAL_BISHOPS = 7;
+    final static int BOARD_SIZE = 8;
+    final static int BISHOPS_LIMIT_PER_ROW = 3;
+
+    public static void main(String[] args) {
+        int counter = 0;
+        PartialSolution[] stack = new PartialSolution[BOARD_SIZE*BOARD_SIZE];
+        int stackSize = 0;
+
+        stack[stackSize] = new PartialSolution(); 
+        ++stackSize;
+
+        while ( stackSize > 0 ) {
+            --stackSize;
+            PartialSolution parent = stack[stackSize];
+            for ( PartialSolution child : parent ) {
+                boolean valid = child.isValid();
+                boolean completed = child.isFinal();
+                if ( valid && ! completed ) {
+                    stack[stackSize] = child; 
+                    ++stackSize;            
+                } else if ( valid && completed ) {
+                    ++counter;
+                    System.out.println(child);
+                }
+            }
+        }
+
+    }
+}
+
+class PartialSolution implements Iterable<PartialSolution> {
+    boolean isFirst = false;
+    int[] coord_x;
+    int[] coord_y;
+
+    public PartialSolution() {
+        isFirst = true;
+    }
+
+    public PartialSolution(PartialSolution parent, int row, int col) {
+        if ( isFirst ) {
+            coord_x = new int[1];
+            coord_y = new int[1];
+            coord_x[0] = row;
+            coord_y[0] = col;
+        } else {
+            coord_x = Arrays.copyOf(parent.coord_x, parent.coord_x.length + 1);
+            coord_x[coord_x.length-1] = row;
+            coord_y = Arrays.copyOf(parent.coord_y, parent.coord_y.length + 1);
+            coord_y[coord_y.length-1] = col;    
+        }
+    }
+
+    public boolean isValid() {
+        return true;
+    }
+
+    public boolean isFinal() {
+        return true;
+    }
+
+    @Override
+    public Iterator<PartialSolution> iterator() {
+        return new IteratorPartialSolution(this);
+    }
+}
+
+class IteratorPartialSolution implements Iterator<PartialSolution> {
+
+    int row, col;
+    PartialSolution ps;
+
+    IteratorPartialSolution(PartialSolution parent) {
+        this.ps = parent;
+        row = parent.coord_x[parent.coord_x.length-1];
+        col = parent.coord_y[parent.coord_y.length-1];
+        col = col + 2; 
+        if ( col >= LittleBishops.BOARD_SIZE ) {
+            row = row + 1;
+            col = row % 2;
+        }
+    }
+
+    @Override
+    public boolean hasNext() {
+        return row < LittleBishops.BOARD_SIZE && col < LittleBishops.BOARD_SIZE;
+    }
+
+    @Override
+    public PartialSolution next() {
+        PartialSolution result = new PartialSolution(ps, row, col);
+        col = col + 2; 
+        if ( col >= LittleBishops.BOARD_SIZE ) {
+            row = row + 1;
+            col = row % 2;
+        }
+        return result; 
+    }
+    
+}
